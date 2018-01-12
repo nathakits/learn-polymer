@@ -1,0 +1,49 @@
+<!-- Load the Polymer.Element base class -->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<dom-module id="my-section">
+  <!-- Defines the element's style and local DOM -->
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      .site-gray-bg {
+        background:#f5f5f5;
+      }
+
+      .site-content-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      .feature-container-column {
+        padding: 3em 0;
+      }
+    </style>
+
+    <section class$="[[class]]">
+      <div class="site-content-container">
+        <div class="feature-container-column">
+          <slot></slot>
+        </div>
+      </div>
+    </section>
+
+  </template>
+  <script>
+    // Your new element extends the Polymer.Element base class
+    class MySection extends Polymer.Element {
+      static get is() { return 'my-section'; }
+
+      static get properties() { return {
+        class: String
+
+      }}
+    }
+    //Now, register your new custom element so the browser can use it
+    customElements.define(MySection.is, MySection);
+  </script>
+</dom-module>
