@@ -56,6 +56,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --paper-icon-button-ink-color: white;
       }
 
+      app-toolbar {
+        height: 45px;
+      }
+
       .drawer-list {
         margin: 0 20px;
       }
@@ -103,13 +107,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       .logo a {
         color: white;
-        font-size: 18px;
+        font-size: 1.5em;
         font-weight: 600;
         text-decoration: none;
         /* required for IE 11, so this <a> can receive pointer events */
         display: inline-block;
         pointer-events: auto;
-        font-family: 'Regular',sans-serif
+        font-family: 'Regular';
       }
 
       .container {
@@ -117,6 +121,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       .section-tabs a {
+        font-family: 'AtlasGroteskRegular';
+        font-weight: 700;
         margin: 0 8px;
         font-size: 0.7em;
         color: white;
@@ -144,6 +150,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         @apply --layout-center-center;
       }
 
+      footer {
+        border-top: 4px solid transparent;
+        border-image: linear-gradient(to right,#38ea92 0%,#a1def0 100%) 100% 0 0 0/4px 0 0 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        margin-top: 20px;
+        line-height: 24px;
+      }
+
+      footer > a {
+        color: var(--app-secondary-color);
+        text-decoration: none;
+      }
+
+      footer > a:hover {
+        text-decoration: underline;
+      }
+
+      .footer-container {
+        margin: 0 auto;
+        max-width: 1000px;
+        padding: 60px 40px;
+      }
+
     </style>
 
     <app-location
@@ -163,12 +195,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <app-drawer-layout fullbleed narrow="{{narrow}}">
       <!-- Drawer content -->
       <app-drawer opened="{{drawerOpened}}" swipe-open tabindex="0">
-        <app-toolbar>Menu</app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="view1" href="[[rootPath]]view1">Home</a>
-          <a name="view2" href="[[rootPath]]view2">View Two</a>
-          <a name="view3" href="[[rootPath]]view3">View Three</a>
-          <a name="new-view" href="[[rootPath]]new-view">New View</a>
+        <iron-selector role="navigation" class="drawer-list" selected="[[page]]" attr-for-selected="name">
+          <a name="view1" href="[[rootPath]]view1">HOME</a>
+          <a name="view2" href="[[rootPath]]view2">PUPIL</a>
+          <a name="view3" href="[[rootPath]]view3">VR/AR</a>
+          <a name="new-view" href="[[rootPath]]new-view">STORE</a>
         </iron-selector>
       </app-drawer>
 
@@ -180,7 +211,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-icon-button class="menu-btn" icon="my-icons:menu" on-click="_toggleDrawer"></paper-icon-button>
             <div class="logo" main-title><a href="/">pupil labs</a></div>
             <div class="flex"></div>
-            <nav>
+            <nav style="padding-right: 10px;">
               <iron-selector class="section-tabs" attr-for-selected="name" activate-event>
                 <a href="/view2">PUPIL</a>
                 <a href="/view3">VR/AR</a>
@@ -207,9 +238,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <my-new-view name="new-view"></my-new-view>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
-        
+
+        <!-- footer -->
+        <footer>
+          <div class="footer-container">
+            <a href="https://www.polymer-project.org/1.0/toolbox/">Made by Polymer</a>
+            <div class="demo-label">Demo Only</div>
+          </div>
+        </footer>
+
       </app-header-layout>
     </app-drawer-layout>
+
+
   </template>
 
   <script>
@@ -247,10 +288,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // Default to 'view1' in that case.
         this.page = page || 'view1';
 
-        // Close a non-persistent drawer when the page & route are changed.
-        if (!this.$.drawer.persistent) {
-          this.$.drawer.close();
-        }
+        // Close the drawer - in case the *route* change came from a link in the drawer.
+        this.drawerOpened = false;
       }
 
       _pageChanged(page) {
