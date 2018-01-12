@@ -10,23 +10,85 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="my-background.html">
+<link rel="import" href="my-image.html">
+<link rel="import" href="my-section.html">
+<link rel="import" href="my-icons.html">
 
 <dom-module id="my-view1">
   <template>
     <style include="shared-styles">
       :host {
         display: block;
-
-        padding: 10px;
       }
+
     </style>
 
-    <div class="card">
-      <div class="circle">1</div>
-      <h1>Home</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+    <my-background
+      alt="Pupil background image"
+      src="../images/home/00.jpg"
+      caption="Open source eye tracking">
+    </my-background>
+
+    <my-section>
+      <h1>Pupil Platform</h1>
+      <h3>We develop open source software and build accessible hardware for eye tracking.</h3>
+      <div class="grid grid--1of2 grid-center">
+        <div class="grid-cell">
+          <p>Our mobile eye tracking headsets have research grade specs and enable accessible and scalable eye tracking research.</p>
+          <p>Supercharge your VR and AR eye tracking research and development with our eye tracking add-ons for the latest consumer hardware.</p>
+          <p>Take full control of the software and modify to your needs - it's 100% open source!</p>
+          <p>All hardware is designed, developed, and assembled in our Berlin office and ships worldwide. Check out products on our store.</p>
+        </div>
+        <div class="grid-cell">
+          <my-image
+            alt="Eye debug"
+            src="../images/home/eye_debug_01.jpg">
+          </my-image>
+        </div>
+      </div>
+    </my-section>
+
+    <my-section class="site-gray-bg">
+      <h1 align="center">Pupil is Open Source</h1>
+      <div class="grid grid--1of3 textCenter">
+        <div class="grid-cell">
+          <my-image
+            alt="Eye debug"
+            src="../images/home/eye_debug_01.jpg">
+          </my-image>
+          <h4>Modify our tools or create your own</h4>
+        </div>
+        <div class="grid-cell">
+          <my-image
+            alt="Eye debug"
+            src="../images/home/eye_debug_01.jpg">
+          </my-image>
+          <h4>Become part of an active community from around the world</h4>
+        </div>
+        <div class="grid-cell">
+          <my-image
+            alt="Eye debug"
+            src="../images/home/eye_debug_01.jpg">
+          </my-image>
+          <h4>Get access to continuous updates and receive rapid support</h4>
+        </div>
+      </div>
+      <h3 align="center">The entire platform is on github and licensed under LGPLv3.</h3>
+      <h3 align="center">Check out a snapshot of the most recent activity below.</h3>
+    </my-section>
+
+    <div class="site-content-container">
+      <div class="feature-container-column">
+        <div class="card">
+          <div class="circle">1</div>
+          <h1>Home</h1>
+          <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
+          <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+        </div>
+      </div>
     </div>
+
   </template>
 
   <script>
