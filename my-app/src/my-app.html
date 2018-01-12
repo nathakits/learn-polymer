@@ -21,6 +21,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="my-icons.html">
 
 <link rel="lazy-import" href="my-view1.html">
@@ -48,7 +49,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       app-header {
         color: #fff;
-        background-color: var(--app-primary-color);
+        background: linear-gradient(to right,#38ea92 0%,#a1def0 100%);
       }
 
       app-header paper-icon-button {
@@ -89,6 +90,58 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         :host([page=detail]) .menu-btn {
           display: none;
         }
+
+        .section-tabs {
+          display: none;
+        }
+
+        .logo {
+          text-align: center;
+        }
+      }
+
+
+      .logo a {
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        text-decoration: none;
+        /* required for IE 11, so this <a> can receive pointer events */
+        display: inline-block;
+        pointer-events: auto;
+        font-family: 'Regular',sans-serif
+      }
+
+      .container {
+        @apply(--layout-horizontal);
+      }
+
+      .section-tabs a {
+        margin: 0 8px;
+        font-size: 0.7em;
+        color: white;
+        text-decoration: none;
+      }
+
+      .cart-btn-container {
+        position: relative;
+        width: 40px;
+      }
+
+      .cart-badge {
+        position: absolute;
+        top: -2px;
+        right: 0;
+        width: 20px;
+        height: 20px;
+        background-color: var(--app-accent-color);
+        border-radius: 50%;
+        color: white;
+        font-size: 12px;
+        font-weight: 500;
+        pointer-events: none;
+        @apply --layout-vertical;
+        @apply --layout-center-center;
       }
 
     </style>
@@ -125,7 +178,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-header slot="header" condenses reveals effects="waterfall">
           <app-toolbar>
             <paper-icon-button class="menu-btn" icon="my-icons:menu" on-click="_toggleDrawer"></paper-icon-button>
-            <div main-title>Pupil Labs</div>
+            <div class="logo" main-title><a href="/">pupil labs</a></div>
+            <div class="flex"></div>
+            <nav>
+              <iron-selector class="section-tabs" attr-for-selected="name" activate-event>
+                <a href="/view2">PUPIL</a>
+                <a href="/view3">VR/AR</a>
+                <a href="/new-view">STORE</a>
+                <a href="/">DOCS</a>
+                <a href="/">BLOG</a>
+                <a href="/">ABOUT</a>
+                <a href="/">CAREERS</a>
+              </iron-selector>
+            </nav>
+            <div class="cart-btn-container">
+              <a href="/" tabindex="-1">
+                <paper-icon-button icon="my-icons:shopping-cart" aria-label$="Shopping cart: [[_computePluralizedQuantity(numItems)]]"></paper-icon-button>
+              </a>
+              <div class="cart-badge" aria-hidden="true" hidden$="[[!numItems]]">[[numItems]]</div>
+            </div>
           </app-toolbar>
         </app-header>
 
