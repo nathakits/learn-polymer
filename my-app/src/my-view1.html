@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="my-background.html">
 <link rel="import" href="my-image.html">
@@ -24,12 +25,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
 
+    <iron-ajax auto url="../data/customer_list.json" handle-as="json" last-response="{{customerData}}"></iron-ajax>
+
+    <!-- background image -->
     <my-background
       alt="Pupil background image"
       src="../images/home/00.jpg"
       caption="Open source eye tracking">
     </my-background>
 
+    <!-- pupil platform -->
     <my-section>
       <h1>Pupil Platform</h1>
       <h3>We develop open source software and build accessible hardware for eye tracking.</h3>
@@ -49,45 +54,63 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
     </my-section>
 
+    <!-- open source -->
     <my-section class="site-gray-bg">
       <h1 align="center">Pupil is Open Source</h1>
       <div class="grid grid--1of3 textCenter">
         <div class="grid-cell">
-          <my-image
-            alt="Eye debug"
-            src="../images/home/eye_debug_01.jpg">
-          </my-image>
+          <iron-icon 
+            style="--iron-icon-height: 330px;--iron-icon-width: 330px;"
+            src="../images/home/modular.png">
+          </iron-icon>
           <h4>Modify our tools or create your own</h4>
         </div>
         <div class="grid-cell">
-          <my-image
-            alt="Eye debug"
-            src="../images/home/eye_debug_01.jpg">
-          </my-image>
+          <iron-icon 
+            style="--iron-icon-height: 330px;--iron-icon-width: 330px;"
+            src="../images/home/community.png">
+          </iron-icon>
           <h4>Become part of an active community from around the world</h4>
         </div>
         <div class="grid-cell">
-          <my-image
-            alt="Eye debug"
-            src="../images/home/eye_debug_01.jpg">
-          </my-image>
+          <iron-icon 
+            style="--iron-icon-height: 330px;--iron-icon-width: 330px;"
+            src="../images/home/service.png">
+          </iron-icon>
           <h4>Get access to continuous updates and receive rapid support</h4>
         </div>
       </div>
-      <h3 align="center">The entire platform is on github and licensed under LGPLv3.</h3>
+      <h3 align="center" style="padding-bottom: 0;">The entire platform is on
+        <a href="https://github.com/pupil-labs" title="Pupil repository on github">github</a>
+         and licensed under LGPLv3.
+      </h3>
       <h3 align="center">Check out a snapshot of the most recent activity below.</h3>
     </my-section>
 
-    <div class="site-content-container">
-      <div class="feature-container-column">
-        <div class="card">
-          <div class="circle">1</div>
-          <h1>Home</h1>
-          <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-          <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
-        </div>
-      </div>
-    </div>
+    <!-- featured companies and universities using Pupil -->
+    <my-section>
+      <h1 align="center">Featured companies and universities using Pupil</h1>
+
+      <dom-repeat items="[[customerData.commercial]]">
+        <template strip-whitespace>
+          <div class="item">
+            <a class="image-link" href$="/list/[[item.name]]">
+              <shop-image src="[[item.image]]" alt="[[item.title]]" placeholder-img="[[item.placeholder]]"></shop-image>
+            </a>
+            <h2>[[item.title]]</h2>
+            <shop-button>
+              <a aria-label$="[[item.title]] Shop Now" href$="/list/[[item.name]]">Shop Now</a>
+            </shop-button>
+          </div>
+        </template>
+      </dom-repeat>
+
+      <h3 align="center">Take a look at academic publications that cite Pupil.</h3>
+    </my-section>
+
+    <my-section>
+      <h1 align="center">Featured companies and universities using Pupil</h1>
+    </my-section>
 
   </template>
 
