@@ -1,0 +1,53 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="my-background.html">
+<link rel="import" href="my-image.html">
+<link rel="import" href="my-section.html">
+<link rel="import" href="my-icons.html">
+<link rel="import" href="my-customer.html">
+
+<dom-module id="my-blog">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+
+    </style>
+
+    <iron-ajax auto url="../data/customer_list.json" handle-as="json" last-response="{{customerData}}"></iron-ajax>
+
+    <!-- background image -->
+    <my-background
+      alt="Pupil background image"
+      caption="Open source eye tracking"
+      src="../images/home/00.jpg"
+      b64="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAUAAD/4QMbaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjlDNUQ2QTcwNUFCRjExRTZBNzMxQjg5Q0RDOTU0NUI2IiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjlDNUQ2QTZGNUFCRjExRTZBNzMxQjg5Q0RDOTU0NUI2IiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgTWFjaW50b3NoIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9IkQ3NEIxQzI5QkJFOTMxNTVFRTIzNThCNkE5NzM4QTE5IiBzdFJlZjpkb2N1bWVudElEPSJENzRCMUMyOUJCRTkzMTU1RUUyMzU4QjZBOTczOEExOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv/uAA5BZG9iZQBkwAAAAAH/2wCEABIODg4QDhUQEBUeFBEUHiMaFRUaIyIZGRoZGSInHiMhISMeJycuMDMwLic+PkFBPj5BQUFBQUFBQUFBQUFBQUEBFBQUFhkWGxcXGxoWGhYaIRodHRohMSEhJCEhMT4tJycnJy0+ODszMzM7OEFBPj5BQUFBQUFBQUFBQUFBQUFBQf/AABEIAB4AKAMBIgACEQEDEQH/xAB4AAADAQEBAAAAAAAAAAAAAAAABAUGAgMBAQEBAQAAAAAAAAAAAAAAAAIBAAMQAAIBAwMCAwUJAAAAAAAAAAECAwARBCExEkEFUSITYaEyFQZxgZGxwUKiIxQRAAICAgEFAAAAAAAAAAAAAAABETEhAmFBURIDE//aAAwDAQACEQMRAD8AjN3dCSWj1O50p3D+oZIEZEjATpemIvp7B4cnk99q7XsmBIvEORY2vcaVzXEgfrxYlNnOh/0Swuol+FteLfZyWpWU7zv6gTiNtrflWozsdExB22Qn9rpKdQ5uduW1qQ+XNHxjWQgMbDQbmk9m7ZfmlRnI24tqAR7aKu5HYcaABmmOp2FqKkm8XJ6R9uy3iHqlr+BJA/CmlxGXt8itII2AZi3gRt1v0rQEydQPdUSxXJyvVLvjNz5WsEQEef4xrb2U9U56G3o7gXliRQdwQseIdZlBLR8hfcClpMTNgPrLKMmK/wDWwu38RfWrEfzKNI1i4zR20c+Q8beXTxoY5By7RgjyN6rR2sG6crffvVa7tMmjfKMnmLnZLDnsuwCkfpRWv82nj76KOBw5s//Z">
+    </my-background>
+
+    <!-- pupil platform -->
+    <my-section>
+      <h1 align="center">Blog</h1>
+    </my-section>
+
+  </template>
+
+  <script>
+    class MyBlog extends Polymer.Element {
+      static get is() { return 'my-blog'; }
+    }
+
+    window.customElements.define(MyBlog.is, MyBlog);
+  </script>
+</dom-module>
