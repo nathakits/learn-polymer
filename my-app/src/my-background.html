@@ -30,7 +30,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 100vw;
         height: 100vh;
         margin: 0 auto;
-        opacity: 0;
         transition: 0.5s opacity;
         @apply --shop-image-img;
       }
@@ -48,7 +47,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       .background-img--full-wh {
         position: absolute;
-        transition: 0.5s opacity;
         top: 0;
         bottom: 0;
         left: 0;
@@ -58,7 +56,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: transparent;
         background-size: cover;
         -webkit-backface-visibility: hidden;
-        backface-visibility: hidden
+        backface-visibility: hidden;
+        object-fit: cover;
       }
 
       .caption-container {
@@ -77,10 +76,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: white;
       }
 
+      .img-small {
+        filter: blur(50px);
+        transform: scale(1);
+      }
+
     </style>
 
     <div class="background-img-top">
-      <div class="background-img--full-wh" style$="background-image: url([[src]])" id="img" alt$="[[alt]]" on-load="_onImgLoad" on-error="_onImgError"></div>
+      <img class="background-img--full-wh img-small" style$="background-image: url([[ b64 ]])" id="small" alt$="[[alt]]" on-load="_onBlur" on-error="_onImgError"></img>
+      <img class="background-img--full-wh" id="img" alt$="[[alt]]" on-load="_onImgLoad" on-error="_onImgError"></img>
       <div class="site-content-container caption-container">
         <h1 class="bg-img-caption">[[caption]]</h1>
       </div>
@@ -103,6 +108,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           observer: '_srcChanged'
         },
 
+        b64: {
+          type: String,
+        },
+
         placeholderImg: {
           type: String,
           observer: '_placeholderImgChanged'
@@ -113,22 +122,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }}
 
       _srcChanged(src) {
-        this.$.div.style.removeAttribute('src');
-        this.$.div.style.transition = '';
-        this.$.div.style.opacity = 0;
+        this.$.img.removeAttribute('src');
+        this.$.img.style.transition = '';
+        this.$.img.style.opacity = 0;
         if (src) {
-          this.$.div.src = src;
+          this.$.img.src = src;
         }
       }
 
       _onImgLoad() {
-        this.$.div.style.transition = '0.5s opacity';
-        this.$.div.style.opacity = 1;
+        this.$.img.style.transition = '0.25s opacity';
+        this.$.img.style.opacity = 1;
+      }
+
+      _onBlur() {
+        this.$.small.style.filter = 'blur(50px)';
+        this.$.small.style.transform = 'scale(1)';
       }
 
       _onImgError() {
         if (!this.placeholderImg) {
-          this.$.div.src = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#CCC" d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>');
+          this.$.img.src = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#CCC" d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>');
         }
       }
 
