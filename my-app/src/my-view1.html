@@ -15,6 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="my-image.html">
 <link rel="import" href="my-section.html">
 <link rel="import" href="my-icons.html">
+<link rel="import" href="my-customer.html">
 
 <dom-module id="my-view1">
   <template>
@@ -31,7 +32,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <my-background
       alt="Pupil background image"
       src="../images/home/00.jpg"
-      caption="Open source eye tracking">
+      caption="Open source eye tracking"
+      b64="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAUAAD/4QMbaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjlDNUQ2QTcwNUFCRjExRTZBNzMxQjg5Q0RDOTU0NUI2IiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjlDNUQ2QTZGNUFCRjExRTZBNzMxQjg5Q0RDOTU0NUI2IiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgTWFjaW50b3NoIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9IkQ3NEIxQzI5QkJFOTMxNTVFRTIzNThCNkE5NzM4QTE5IiBzdFJlZjpkb2N1bWVudElEPSJENzRCMUMyOUJCRTkzMTU1RUUyMzU4QjZBOTczOEExOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv/uAA5BZG9iZQBkwAAAAAH/2wCEABIODg4QDhUQEBUeFBEUHiMaFRUaIyIZGRoZGSInHiMhISMeJycuMDMwLic+PkFBPj5BQUFBQUFBQUFBQUFBQUEBFBQUFhkWGxcXGxoWGhYaIRodHRohMSEhJCEhMT4tJycnJy0+ODszMzM7OEFBPj5BQUFBQUFBQUFBQUFBQUFBQf/AABEIAB4AKAMBIgACEQEDEQH/xAB4AAADAQEBAAAAAAAAAAAAAAAABAUGAgMBAQEBAQAAAAAAAAAAAAAAAAIBAAMQAAIBAwMCAwUJAAAAAAAAAAECAwARBCExEkEFUSITYaEyFQZxgZGxwUKiIxQRAAICAgEFAAAAAAAAAAAAAAABETEhAmFBURIDE//aAAwDAQACEQMRAD8AjN3dCSWj1O50p3D+oZIEZEjATpemIvp7B4cnk99q7XsmBIvEORY2vcaVzXEgfrxYlNnOh/0Swuol+FteLfZyWpWU7zv6gTiNtrflWozsdExB22Qn9rpKdQ5uduW1qQ+XNHxjWQgMbDQbmk9m7ZfmlRnI24tqAR7aKu5HYcaABmmOp2FqKkm8XJ6R9uy3iHqlr+BJA/CmlxGXt8itII2AZi3gRt1v0rQEydQPdUSxXJyvVLvjNz5WsEQEef4xrb2U9U56G3o7gXliRQdwQseIdZlBLR8hfcClpMTNgPrLKMmK/wDWwu38RfWrEfzKNI1i4zR20c+Q8beXTxoY5By7RgjyN6rR2sG6crffvVa7tMmjfKMnmLnZLDnsuwCkfpRWv82nj76KOBw5s//Z">
     </my-background>
 
     <!-- pupil platform -->
@@ -89,27 +91,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <!-- featured companies and universities using Pupil -->
     <my-section>
-      <h1 align="center">Featured companies and universities using Pupil</h1>
+      <div class="grid justContent-center">
+        <div class="padBottom--2">
+          <h1 class="">Featured companies and universities using Pupil</h1>
+        </div>
+        <!-- commercial data -->
+        <div class="grid grid--1of4 grid-center padBottom--2" style="border-bottom: 1px solid black;">
+          <dom-repeat items="[[customerData.commercial]]">
+            <template strip-whitespace>
+              <div class="grid justContent-center grid-cell">
+                <div id="[[item.name]]"></div>
+                <picture id="[[item.uid]]">
+                  <my-image src="[[item.img]]" alt="[[item.name]]" placeholder-img="[[item.placeholder]]"></my-image>
+                </picture>
+              </div>
+            </template>
+          </dom-repeat>
+        </div>
+        <!-- academic data -->
+        <div class="grid grid--1of4 grid-center padTop--2">
+          <dom-repeat items="[[customerData.academic]]">
+            <template strip-whitespace>
+              <div class="grid justContent-center grid-cell">
+                <div id="[[item.name]]"></div>
+                <picture id="[[item.uid]]">
+                  <my-image src="[[item.img]]" alt="[[item.name]]" placeholder-img="[[item.placeholder]]"></my-image>
+                </picture>
+              </div>
+            </template>
+          </dom-repeat>
+        </div>
+      </div>
 
-      <dom-repeat items="[[customerData.commercial]]">
-        <template strip-whitespace>
-          <div class="item">
-            <a class="image-link" href$="/list/[[item.name]]">
-              <shop-image src="[[item.image]]" alt="[[item.title]]" placeholder-img="[[item.placeholder]]"></shop-image>
-            </a>
-            <h2>[[item.title]]</h2>
-            <shop-button>
-              <a aria-label$="[[item.title]] Shop Now" href$="/list/[[item.name]]">Shop Now</a>
-            </shop-button>
-          </div>
-        </template>
-      </dom-repeat>
+      <h3 align="center">Take a look at academic
+        <a href="https://docs.google.com/spreadsheets/d/1ZD6HDbjzrtRNB4VB0b7GFMaXVGKZYeI0zBOBEEPwvBI/edit?ts=576a3b27#gid=0">publications that cite Pupil.</a>
+      </h3>
 
-      <h3 align="center">Take a look at academic publications that cite Pupil.</h3>
     </my-section>
 
-    <my-section>
-      <h1 align="center">Featured companies and universities using Pupil</h1>
+    <my-section class="site-gray-bg">
+      <h1 align="center">Recent Blog Posts</h1>
     </my-section>
 
   </template>
