@@ -74,16 +74,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         align-items: center
       }
 
+      .justContent-center {
+        justify-content: center
+      }
+
       .grid--1of2 > .grid-cell {
         flex: 0 0 50%;
+        max-width: 50%;
       }
 
       .grid--1of3 > .grid-cell {
         flex: 0 0 33.3333%;
+        max-width: 33.3333%;
+      }
+
+      .grid--1of4 > .grid-cell {
+        flex: 0 0 25%;
+        max-width: 25%;
       }
 
       .padBottom--2 {
         padding-bottom: 2em;
+      }
+
+      .padTop--2 {
+        padding-top: 2em;
       }
 
       .textCenter {
@@ -91,7 +106,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       a {
+        color: #11a08c;
         text-decoration: none;
+        transition: color .4s ease;
+        cursor: pointer;
       }
 
       @media (max-width: 767px) {
