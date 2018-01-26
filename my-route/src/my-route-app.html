@@ -1,0 +1,61 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+
+<dom-module id="my-route-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+    </style>
+
+    <app-location
+        route="{{route}}"
+        url-space-regex="^[[rootPath]]">
+    </app-location>
+
+    <app-route 
+      route="{{route}}"
+      pattern="{{pattern}}"
+      active="{{active}}">
+    </app-route>
+
+    <div>Route is <span hidden$="{{active}}">not</span> active.</div>
+    <paper-input label="Route path" value="{{route.path}}"></paper-input>
+    <paper-input label="Match pattern" value="{{pattern}}"></paper-input>
+
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class MyRouteApp extends Polymer.Element {
+      static get is() { return 'my-route-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'my-route-app'
+          },
+          pattern: {
+            value: '/store'
+          },
+          route: {
+            value: function(route) {
+              console.log(route);
+              return {path: '/store/garden', prefix: '', __queryParams: {}}
+            }
+          }
+        };
+      }
+    }
+
+    window.customElements.define(MyRouteApp.is, MyRouteApp);
+  </script>
+</dom-module>

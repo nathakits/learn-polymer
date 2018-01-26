@@ -1,0 +1,6 @@
+{
+  "name": "my-route",
+  "short_name": "my-route",
+  "start_url": "/",
+  "display": "standalone"
+}
