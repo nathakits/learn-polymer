@@ -1,0 +1,101 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/moment-js/moment-js.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="my-section.html">
+<link rel="import" href="my-hypertext.html">
+
+<dom-module id="my-post">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+
+    </style>
+
+    <app-route
+      route="[[route]]"
+      pattern="/post"
+      data="{{routeData}}">
+    </app-route>
+
+    <iron-ajax
+      auto
+      url$="[[_computeUrl(route.*)]]"
+      handle-as="json"
+      last-response="{{postData}}"
+      verbose>
+    </iron-ajax>
+
+    <!-- <my-section class="site-gray-bg">
+      <div align="center" class="padBottom--2">
+        <h1>Blog Post</h1>
+      </div>
+    </my-section> -->
+
+    <my-section>
+      <template is="dom-repeat" items="[[postData]]">
+        <div  align="center">
+          <h1>[[item.title]]</h1>
+          <moment-js date="[[item.date]]" format="YYYY MMM DD" utc=""></moment-js>
+        </div>
+        <my-hypertext html="[[item.body]]"></my-hypertext>
+      </template>
+    </my-section>
+
+  </template>
+
+  <script>
+
+   class MyPost extends Polymer.Element {
+
+      static get is() { return 'my-post'; }
+
+      static get properties() { return {
+
+        url: String,
+
+        computeUrl: String,
+
+        slug: Object,
+
+        route: Object,
+
+        routeData: Object,
+
+        article: Object
+
+      }}
+
+      // static get observers() { return [
+      //   // '_computeUrl(route.*)',
+      //   // '_routeChanged(route.*)',
+      //   // '_loadArticle(item)'
+      // ]}
+
+      _computeUrl(url) {
+        var path = url.base.path
+        var computeUrl = `./data/articles${path}/index.json`
+        return computeUrl
+      }
+
+      _routeChanged(route) {
+        console.log('Path changed!', route);
+      }
+
+      // _loadArticle(item) {
+      //   // insert post body to the page
+      //   var title = this.root.querySelector('dom-repeat');
+      //   var content = item.body;
+      //   title.insertAdjacentHTML( 'afterend', content );
+      // }
+
+    }
+
+    window.customElements.define(MyPost.is, MyPost);    
+
+
+  </script>
+</dom-module>

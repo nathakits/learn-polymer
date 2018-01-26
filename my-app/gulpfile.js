@@ -28,29 +28,17 @@ gulp.task('default', function() {
 // =================================================================
 
 
-var md_path = './src/articles/**/*.md';
-var json_path = './src/articles/**/*.json';
+var md_path = './data/articles/**/*.md';
+var json_path = './data/articles/**/*.json';
 
 marked.setOptions({
-  gfm: true,
-  tables: true,
+  gfm: false,
+  tables: false,
   breaks: false,
   pedantic: false,
-  sanitize: true,
+  sanitize: false,
   smartLists: true,
-  smartypants: false
-});
-
-// generate json from all md's into one single file
-gulp.task('mark-all', () => {
-  gulp.src(md_path)
-    .pipe(gutil.buffer())
-    .pipe(markdownToJSON(marked, (data) => {
-      delete data.body;
-      return data
-    }))
-    .pipe(flatten())
-    .pipe(gulp.dest('./src/json/'))
+  smartypants: true
 });
 
 // generates json files for each md
@@ -67,12 +55,12 @@ gulp.task('md-posts', () => {
       array.push(data)
       return array
     }))
-    .pipe(gulp.dest('./src/articles/'))
+    .pipe(gulp.dest('./data/articles/'))
 });
 
 // combine all generated json files into one single file
 gulp.task('md-concat', () => {
   gulp.src(json_path)
     .pipe(concat_json("combined.json"))
-    .pipe(gulp.dest('./src/json'));
+    .pipe(gulp.dest('./data/json'));
 });

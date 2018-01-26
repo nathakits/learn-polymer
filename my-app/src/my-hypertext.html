@@ -1,0 +1,51 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/moment-js/moment-js.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-hypertext">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+
+    </style>
+
+    <content id="htmlContent"></content>
+
+  </template>
+
+  <script>
+
+   class MyHypertext extends Polymer.Element {
+
+      static get is() { return 'my-hypertext'; }
+
+      static get properties() { return {
+
+        html: {
+          type: String,
+          observer: '_computeHTML'
+        }
+
+      }}
+
+      // static get observers() { return [
+      //   // '_computeUrl(route.*)',
+      //   // '_routeChanged(route.*)',
+      //   // '_loadArticle(item)'
+      // ]}
+
+      _computeHTML(html) {
+
+        this.$.htmlContent.innerHTML = html;
+        return
+      }
+
+    }
+
+    window.customElements.define(MyHypertext.is, MyHypertext);    
+
+
+  </script>
+</dom-module>

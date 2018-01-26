@@ -27,6 +27,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       img {
+        width: 100%;
         max-width: 100%;
         max-height: 100%;
         margin: 0 auto;
@@ -34,10 +35,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         transition: 0.5s opacity;
       }
 
+      .image-fit {
+        object-fit: contain;
+        height: 30vh;
+      }
+
     </style>
 
     
-    <img id="img" alt$="[[alt]]" on-load="_onImgLoad" on-error="_onImgError">
+    <img id="img" class$="[[img_class]]" alt$="[[alt]]" on-load="_onImgLoad" on-error="_onImgError">
 
   </template>
 
@@ -60,6 +66,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: String,
           observer: '_placeholderImgChanged'
         },
+
+        img_class: String
         
       }}
 

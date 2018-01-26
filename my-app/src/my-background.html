@@ -83,7 +83,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
 
-    <div class="background-img-top">
+    <div class="background-img-top" style$="[[style]]">
       <img class="background-img--full-wh img-small" style$="background-image: url([[ b64 ]])" id="small" alt$="[[alt]]" on-load="_onBlur" on-error="_onImgError"></img>
       <img class="background-img--full-wh" id="img" alt$="[[alt]]" on-load="_onImgLoad" on-error="_onImgError"></img>
       <div class="site-content-container caption-container">
@@ -117,7 +117,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           observer: '_placeholderImgChanged'
         },
 
-        caption: String
+        caption: String,
+
+        style: String
         
       }}
 
